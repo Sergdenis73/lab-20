@@ -2,7 +2,6 @@
 #include <string.h>
 #include <ctype.h>
 
-// Оголошення структури для зберігання даних про студента
 typedef struct {
     char surname[50];
     char name[50];
@@ -10,7 +9,6 @@ typedef struct {
     float scholarship;
 } Student;
 
-// Функція для введення даних про студентів
 void input_students(Student students[], int count) {
     for (int i = 0; i < count; i++) {
         printf("\nВведіть дані про студента #%d:\n", i + 1);
@@ -25,7 +23,6 @@ void input_students(Student students[], int count) {
     }
 }
 
-// Функція для виведення даних про студентів
 void print_students(const Student students[], int count) {
     printf("\nСписок студентів:\n");
     printf("------------------------------------------------------------\n");
@@ -43,11 +40,10 @@ void print_students(const Student students[], int count) {
     printf("------------------------------------------------------------\n");
 }
 
-// Функція для зміни стипендії за прізвищем
 int change_scholarship(Student students[], int count, const char *surname, float new_scholarship) {
     int found = 0;
     for (int i = 0; i < count; i++) {
-        // Порівняння прізвищ без урахування регістру
+
         if (strcasecmp(students[i].surname, surname) == 0) {
             students[i].scholarship = new_scholarship;
             found = 1;
@@ -61,18 +57,14 @@ int main() {
     int student_count;
     printf("Введіть кількість студентів: ");
     scanf("%d", &student_count);
-    
-    // Створення масиву структур
+ 
     Student students[student_count];
-    
-    // Введення даних про студентів
+ 
     input_students(students, student_count);
-    
-    // Виведення початкових даних
+ 
     printf("\nПочаткові дані:");
     print_students(students, student_count);
-    
-    // Зміна стипендії
+  
     char surname_to_find[50];
     float new_scholarship;
     
@@ -86,8 +78,7 @@ int main() {
     } else {
         printf("\nСтудента з прізвищем '%s' не знайдено.\n", surname_to_find);
     }
-    
-    // Виведення оновлених даних
+ 
     printf("\nОновлені дані:");
     print_students(students, student_count);
     
